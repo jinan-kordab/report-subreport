@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.1.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/bootstrap/js/bootstrap.js")" src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    @{
+        var keys = (List<string>)ViewBag.Keys;
+        var studList = (List<Report_Subreport.Models.Student>)ViewBag.StudentList;
+
+
+        
+        <table class="table table-striped">
+            <thead style="margin-left: 5px" class="bg-success">
+                <tr>
+                    <th style="width: 100%; font-size: x-large">Subreport - nested data example</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+
+            <tbody style="margin-left: 5px">
+                <tr>
+                    <th colspan="5">
+
+
+
+                        @foreach (var k in keys)
+                        {
+            
+                            <table class="table table-striped">
+                                <thead style="margin-left: 5px" id="toggleBack" onclick="$(this).next().show();">
+                                    <tr>
+                                        <th style="width: 50px">
+
+                                            <button type="button" class="btn btn-primary">+</button>
+
+
+
+                                        </th>
+                                        <th style="text-align: left">@k</th>
+                                        <th></th>
+                                        <th></th>
+
+                                    </tr>
+
+                                </thead>
+                                <tbody style="margin-left: 5px" id="toggleHide" onclick="$(this).hide();">
+
+
+                                    <tr>
+                                        <th scope="row">
+                                            <button type="button" class="btn btn-primary">-</button></th>
+                                        <td><strong>Student ID</strong></td>
+                                        <td><strong>First Name</strong></td>
+                                        <td><strong>Last Name</strong></td>
+                                        <td><strong>Average</strong></td>
+
+                                    </tr>
+
+                                    @foreach (var details in studList)
+                                    {
+                                        if (details.Key.Equals(k))
+                                        {
+                
+                        
+                                        <tr>
+                                            <th scope="row"></th>
+                                            <td>@details.ID</td>
+                                            <td>@details.First</td>
+                                            <td>@details.Last</td>
+                                            <td>@details.Average</td>
+
+                                        </tr> 
+                        
+                                        }
+                                    }
+
+                                </tbody>
+
+                            </table>
+                        }
+
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        
+       
+        
+    }
+</body>
+</html>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //
+    });
+
+</script>
+
+
+
+
